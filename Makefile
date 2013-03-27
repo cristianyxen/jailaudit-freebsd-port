@@ -13,6 +13,11 @@ MASTER_SITES=	http://outpost.h3q.com/software/jailaudit/
 MAINTAINER=	cryx-ports@h3q.com
 COMMENT=	Script to generate portaudit reports for jails
 
+LICENSE=        Beerware
+LICENSE_NAME=   Beerware
+LICENSE_PERMS=  auto-accept
+LICENSE_TEXT=	"THE BEER-WARE LICENCE": Philipp Wuensche <cryx-ports@h3q.com> wrote this software. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return.
+
 RUN_DEPENDS=	${LOCALBASE}/sbin/portaudit:${PORTSDIR}/ports-mgmt/portaudit
 
 USE_BZIP2=	yes
