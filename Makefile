@@ -18,8 +18,6 @@ LICENSE_NAME=   Beerware
 LICENSE_PERMS=  auto-accept
 LICENSE_TEXT=	"THE BEER-WARE LICENCE": Philipp Wuensche <cryx-ports@h3q.com> wrote this software. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return.
 
-RUN_DEPENDS=	${LOCALBASE}/sbin/portaudit:${PORTSDIR}/ports-mgmt/portaudit
-
 USE_BZIP2=	yes
 
 PERIODICDIR?=	${PREFIX}/etc/periodic
@@ -30,4 +28,10 @@ PLIST_SUB+=	PERIODICDIR="${PERIODICDIR:S,^${PREFIX}/,,}" \
 		REPORTDIR="${REPORTDIR:S,^${PREFIX}/,,}" \
 		XTMPDIR="${XTMPDIR:S,^${PREFIX}/,,}"
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${OSVERSION} < 1000000
+RUN_DEPENDS=	${LOCALBASE}/sbin/portaudit:${PORTSDIR}/ports-mgmt/portaudit
+.endif
+
+.include <bsd.port.post.mk>
