@@ -1,4 +1,5 @@
 # Created by: Philipp Wuensche <cryx-ports@h3q.com>
+# $FreeBSD$
 
 PORTNAME=	jailaudit
 PORTVERSION=	1.5
@@ -23,12 +24,22 @@ PLIST_SUB+=	PERIODICDIR="${PERIODICDIR:S,^${PREFIX}/,,}" \
 		REPORTDIR="${REPORTDIR:S,^${PREFIX}/,,}" \
 		XTMPDIR="${XTMPDIR:S,^${PREFIX}/,,}"
 
-NO_STAGE=	yes
-
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} < 1000000
-RUN_DEPENDS=	${LOCALBASE}/sbin/portaudit:${PORTSDIR}/ports-mgmt/portaudit
+RUN_DEPENDS=    ${LOCALBASE}/sbin/portaudit:${PORTSDIR}/ports-mgmt/portaudit
 .endif
+
+pre-install:
+	${MKDIR} ${STAGEDIR}${PERIODICDIR}/security
+
+do-install:
+	${INSTALL_SCRIPT} ${WRKSRC}/jailaudit ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/jailaudit.conf.sample ${STAGEDIR}${PREFIX}/etc
+	${INSTALL_SCRIPT} ${WRKSRC}/410.jailaudit ${STAGEDIR}${PERIODICDIR}/security
+
+post-install:
+	${MKDIR} ${STAGEDIR}${REPORTDIR}
+	${MKDIR} ${STAGEDIR}${XTMPDIR}
 
 .include <bsd.port.post.mk>
