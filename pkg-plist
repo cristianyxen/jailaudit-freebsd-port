@@ -7,5 +7,4 @@ etc/jailaudit.conf.sample
 @dirrmtry %%REPORTDIR%%
 @exec mkdir -p %D/%%XTMPDIR%%
 @dirrmtry %%XTMPDIR%%
-@unexec rmdir %DPDIR%% 2>/dev/null || true
 @dirrmtry jailaudit
