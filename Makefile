@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	jailaudit
-PORTVERSION=	1.5.1
+PORTVERSION=	1.5.2
 PORTREVISION=	1
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	http://outpost.h3q.com/software/jailaudit/
