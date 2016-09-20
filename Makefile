@@ -16,7 +16,7 @@ LICENSE_TEXT=	"THE BEER-WARE LICENCE": Philipp Wuensche <cryx-ports@h3q.com> \
 		wrote this software. As long as you retain this notice you can \
 		do whatever you want with this stuff. If we meet some day, and \
 		you think this stuff is worth it, you can buy me a beer in return.
-LICENSE_PERMS=	auto-accept
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 USES=	tar:bzip2
 
@@ -30,10 +30,6 @@ PLIST_SUB+=	PERIODICDIR="${PERIODICDIR:S,^${PREFIX}/,,}" \
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 1000000
-RUN_DEPENDS=	${LOCALBASE}/sbin/portaudit:${PORTSDIR}/ports-mgmt/portaudit
-.endif
-
 pre-install:
 	${MKDIR} ${STAGEDIR}${PERIODICDIR}/security
 
@@ -41,8 +37,6 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/jailaudit ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/jailaudit.conf.sample ${STAGEDIR}${PREFIX}/etc
 	${INSTALL_SCRIPT} ${WRKSRC}/410.jailaudit ${STAGEDIR}${PERIODICDIR}/security
-
-post-install:
 	${MKDIR} ${STAGEDIR}${REPORTDIR}
 	${MKDIR} ${STAGEDIR}${XTMPDIR}
 
